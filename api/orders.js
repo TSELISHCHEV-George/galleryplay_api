@@ -1,5 +1,7 @@
-// Минимальный эндпоинт-заглушка для проверки рантайма Node 22 на Vercel.
-// Если ты видишь {"ok": true, "path": "/api/orders"} — конфиг работает.
-export default function handler(req, res) {
-  res.status(200).json({ ok: true, path: "/api/orders" });
+// минимальный обработчик для проверки
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    return res.status(200).json([]);
+  }
+  return res.status(405).json({ error: 'Method Not Allowed' });
 }
